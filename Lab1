@@ -1,0 +1,39 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+
+int main(int argc, char* argv[]) {
+ double a, b, c;
+ double x1, x2;
+ double discriminant;
+ int choice = 1;
+
+
+ while (choice == 1) {
+  printf("write ods a, b, c: ");
+  scanf("%lf %lf %lf", &a, &b, &c);
+
+
+  discriminant = pow(b, 2) - (4 * a * c);
+  printf("discriminat = %lf\n", discriminant);
+
+
+  if (discriminant > 0) {
+   x1 = (-b + pow(discriminant, 0.5)) / (2 * a);
+   x2 = (-b - pow(discriminant, 0.5)) / (2 * a);
+  }
+  else if (discriminant == 0) {
+   x1 = -b / (2 * a);
+   printf("D = 0 - one root:\n");
+   printf("x = %lf\n", x1);
+  }
+  else {
+   printf("D < 0 - no roots:\n");
+  }
+
+  printf("\nContinue calculations? (1 - yes, 0 - exit): ");
+  scanf("%d", &choice);
+ }
+
+ return 0;
+}
