@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>    
+#include <locale.h> 
+int main() {
+    setlocale(LC_ALL, "Russian");
+    FILE* fin = fopen("input.txt", "r");
+    FILE* fout = fopen("output.txt", "w");
+    if (fin == NULL) {
+        printf("file could not be found 'input.txt'!\n");
+        return 1; 
+    }
+    if (fout == NULL) {
+        printf("failed to create file 'output.txt'!\n");
+        fclose(fin);
+        return 1;
+    }
+    char surname[50];
+    char name[50];
+    char patronymic[50];
+    int year;
+    while (fscanf(fin, "%s %s %s %d", surname, name, patronymic, &year) == 4) {
+	//	printf("%s\n", surname);
+        if (surname[0] == 'И' || surname[0] == 'и') {
+        	printf("%s", surname);
+            fprintf(fout, "%s %s %s %d\n", surname, name, patronymic, year);
+            printf("%s %s %s %d\n", surname, name, patronymic, year);
+        }
+    }
+    fclose(fin);
+    fclose(fout);
+    printf("the file is ready.\n");
+    return 0;
+}
